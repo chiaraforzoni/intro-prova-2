@@ -1,0 +1,85 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="UTF-8">
+    <title>intro prova</title>
+    <script src="libraries/p5.js" type="text/javascript"></script>
+
+    <script src="libraries/p5.dom.js" type="text/javascript"></script>
+    <script src="libraries/p5.sound.js" type="text/javascript"></script>
+
+    <script src="sketch.js" type="text/javascript"></script>
+
+    <style> body {padding: 0; margin: 0;} canvas {vertical-align: top;} </style>
+      <script language="JavaScript" type="text/javascript">
+<!-- 
+/*  
+   Inserire il numero di banner da far girare
+   al posto del 2 che trovate inserito in questo esempio alla 
+   voce : number_of_sponsors=2;  */
+
+defaultStatus="";
+number_of_sponsors=1;
+
+var sctr=0;
+var isn=new Array();
+for (i=0;i<number_of_sponsors;i++){
+ isn[i]=new Image();
+}
+
+/* Le immagini sono caricate nell'array isn[x]
+   Il numero fra parentesi []ne indica la posizione,
+   dove anche lo 0 è un numero a tutti gli effetti.
+   Specificare fra virgolette il nome dell'immagine e 
+   la sua estensione che potrebbe essere di tipo gif o jpg,
+   completa di eventuale percorso per poterla raggiungere nel caso in cui
+   fosse posizionata in una cartella o indirizzo URL diverso da quello
+   in cui si trova lo script Script.
+   L'immagine [0] sarà quella caricata per prima. */
+
+isn[0].src="inizioex.png"
+          
+/* Stessa cosa vale per l'URL da richiamare associato all'immagine. 
+Questi sono caricati nell'array durl[x] dove anche in questo caso 
+il numero fra parentesi quadrate [] indica la posizione, che dovrà corrispondere allo
+stesso numero della relativa immagine associata nell'array precedente. */
+
+var durl=new Array();
+durl[0]="http://www.google.it/";
+
+
+
+function rotateIt(){
+  sctr++;
+  if (sctr>number_of_sponsors-1){
+   sctr=0;
+   }
+  document.sponsor.src=isn[sctr].src;
+  setTimeout("rotateIt()",100);
+}
+
+/* Questo script può lavorare in siti con o senza frames. 
+   Se dall'interno di un frame si vuole aprire il link a tutto schermo TARGET="_top" 
+   si dovrà modificare l'istruzione:  
+   location.href 
+   con 
+   parent.location.href=durl[sctr];  */
+
+
+function doIt(){
+ location.href=durl[sctr];
+ }
+
+function dispIt(){
+ parent.window.status=durl[sctr];
+ }
+// prelevato su http://www.web-link.it -->
+</script>
+
+  </head>
+  <body>
+      <body onLoad="rotateIt()">	
+  </body>
+      <a href="javascript:doIt()" onMouseOver="dispIt();return true"><img src="inizio.png" name="sponsor" border="0" alt="banner a rotazione"></a>
+    </body>
+    </html>
